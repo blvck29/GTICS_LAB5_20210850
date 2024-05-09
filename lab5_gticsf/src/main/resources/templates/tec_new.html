@@ -65,7 +65,7 @@
                     </div>
                     <div class="col">
                         <div class="mb-4">
-                            <label class="form-label">Celular</label>
+                            <label class="form-label">Edad</label>
                             <input type="number" th:field="*{age}" name="age" class="form-control" th:classappend="${#fields.hasErrors('age')?'is-invalid':''}"/>
                             <div  class="invalid-feedback"
                                   th:if="${#fields.hasErrors('age')}" th:errors="*{age}">
