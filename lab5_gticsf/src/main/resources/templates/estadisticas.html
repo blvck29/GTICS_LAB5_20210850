@@ -6,6 +6,29 @@
 
   <div class="container px-4 pb-5">
     <nav th:replace="~{fragments/navbar.html :: navbar( active = 'Inicio')}"></nav>
+
+    <h1 class="pb-2 border-bottom">Lista de Equipos</h1>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Modelo</th>
+        <th>Número de Serie</th>
+        <th>Pais</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="dev: ${listaDevices}">
+        <td th:text="${dev.getDeviceName()} + ' ' +${tec.getLastName()}"></td>
+        <td th:text="${dev.getDeviceType()}"></td>
+        <td th:text="${dev.getModel()}"></td>
+        <td th:text="${dev.getSerialNumber()}"></td>
+        <td th:text="${dev.getSite().getLocation().getCountry()}"></td>
+      </tr>
+      </tbody>
+    </table>
+
   </div>
 
 </main>

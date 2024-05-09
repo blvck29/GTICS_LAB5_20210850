@@ -1,6 +1,8 @@
 package com.example.lab5_gticsf.Controller;
 
+import com.example.lab5_gticsf.Entity.Device;
 import com.example.lab5_gticsf.Entity.Technician;
+import com.example.lab5_gticsf.Repository.DevicesRepo;
 import com.example.lab5_gticsf.Repository.TechnicianRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +18,10 @@ import java.util.Optional;
 public class AppController {
 
     final TechnicianRepo technicianRepo;
-    public AppController(TechnicianRepo technicianRepo) {
+    final DevicesRepo devicesRepo;
+    public AppController(TechnicianRepo technicianRepo, DevicesRepo devicesRepo) {
         this.technicianRepo = technicianRepo;
+        this.devicesRepo = devicesRepo;
     }
 
     @GetMapping(value = {"", "/"})
@@ -61,7 +65,10 @@ public class AppController {
     }
 
     @GetMapping(value = "estadisticas")
-    public String estadisticas(){
+    public String estadisticas(Model model){
+
+        ArrayList<Device> listaDevices = (ArrayList<Device>) devicesRepo.findAll();
+        model.addAttribute("listaDevices",listaDevices);
         return "estadisticas";
     }
 
