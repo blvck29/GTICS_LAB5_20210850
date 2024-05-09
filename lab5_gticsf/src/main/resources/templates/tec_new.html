@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/navbar.html :: header( title = 'Tecnicos')}"></head>
+<body>
+
+
+
+
+
+<div class="container">
+    <nav th:replace="~{fragments/navbar.html :: navbar( active = 'Tecnicos')}"></nav>
+
+    <div class="row mb-4">
+        <div class="col-md-6 offset-md-3">
+            <br>
+            <h2 th:text="${tecnico.getTechnicianID()==null?'Nuevo Técnico':'Editar Técnico'}"></h2>
+            <hr/>
+            <div class="alert alert-success" role="alert" th:if="${msg != null}" th:text="${msg}">
+                A simple success alert—check it out!
+            </div>
+            <div><p th:text="${tecnico.getTechnicianID()}"></p></div>
+            <form th:action="@{'/guardar_tec'}" method="post" th:object="${tecnico}">
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-4">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" th:field="*{firstName}"  name="firstName"  class="form-control" th:classappend="${#fields.hasErrors('firstName')?'is-invalid':''}"/>
+                            <div  class="invalid-feedback"
+                                  th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                                No puede estar vacío. Debe tener entre 3 y 100 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-4">
+                            <label class="form-label">Apellido</label>
+                            <input type="text" th:field="*{lastName}" name="lastName" class="form-control" th:classappend="${#fields.hasErrors('lastName')?'is-invalid':''}"/>
+                            <div  class="invalid-feedback"
+                                  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+                                No puede estar vacío. Debe tener entre 3 y 100 caracteres
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-4">
+                            <label class="form-label">DNI</label>
+                            <input type="text" th:field="*{dni}" name="dni" class="form-control" th:classappend="${#fields.hasErrors('dni')?'is-invalid':''}"/>
+                            <div  class="invalid-feedback"
+                                  th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">
+                                No puede estar vacío. Mandatorio y de 8 digitos.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-4">
+                            <label class="form-label">Celular</label>
+                            <input type="text" th:field="*{phone}" name="phone" class="form-control" th:classappend="${#fields.hasErrors('phone')?'is-invalid':''}"/>
+                            <div  class="invalid-feedback"
+                                  th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">
+                                No puede estar vacío. Deben ser un número telefónico válido.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-4">
+                            <label class="form-label">Celular</label>
+                            <input type="number" th:field="*{age}" name="age" class="form-control" th:classappend="${#fields.hasErrors('age')?'is-invalid':''}"/>
+                            <div  class="invalid-feedback"
+                                  th:if="${#fields.hasErrors('age')}" th:errors="*{age}">
+                                No puede estar vacío. Deben ser una edad válida.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a th:href="@{'/tecnicos'}" class="btn btn-danger">Cancelar</a>
+                <button type="submit" class="btn btn-primary" th:text="${tecnico.getTechnicianID()==null?'Registrar':'Actualizar'}"></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+<script th:replace="~{fragments/navbar.html :: footer-bootstrap}"></script>
+</body>
+</html>
