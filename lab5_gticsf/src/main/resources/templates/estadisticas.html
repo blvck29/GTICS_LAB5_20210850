@@ -20,7 +20,7 @@
       </thead>
       <tbody>
       <tr th:each="dev: ${listaDevices}">
-        <td th:text="${dev.getDeviceName()} + ' ' +${tec.getLastName()}"></td>
+        <td th:text="${dev.getDeviceName()}"></td>
         <td th:text="${dev.getDeviceType()}"></td>
         <td th:text="${dev.getModel()}"></td>
         <td th:text="${dev.getSerialNumber()}"></td>
